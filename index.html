@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Penemuan Hewan - Bandara Internasional MinangKabau</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'primary-indigo': '#4F46E5',
+              'secondary-indigo': '#6366F1',
+              'light-indigo': '#EEF2FF',
+              'dark-slate': '#1E293B',
+              'mid-slate': '#475569',
+              'light-slate': '#F1F5F9',
+              'success-green': '#10B981',
+              'error-red': '#EF4444',
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Inter dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-light-slate text-mid-slate font-inter">
+    <div class="container max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+      <!-- Judul Utama -->
+      <header class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-dark-slate">Dashboard Laporan Hewan</h1>
+        <p class="mt-2 text-mid-slate">Input dan monitor data penemuan hewan di berbagai zona.</p>
+      </header>
+
+      <main class="grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
+        <!-- Kolom Kiri: Form Input & Tabel Validasi Lokal -->
+        <div class="lg:col-span-1 mb-8 lg:mb-0 space-y-8">
+          <!-- Kartu Form Input -->
+          <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-xl font-bold mb-6 flex items-center text-dark-slate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-primary-indigo">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Buat Laporan Baru
+            </h2>
+
+            <form id="laporanForm" class="space-y-5">
+              <div>
+                <label for="namaHewan" class="block text-sm font-medium text-mid-slate mb-1">Nama Hewan</label>
+                <input
+                  list="daftarHewan"
+                  name="namaHewan"
+                  id="namaHewan"
+                  placeholder="Ketik atau pilih hewan..."
+                  required
+                  class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-indigo focus:border-primary-indigo transition-all"
+                />
+                <datalist id="daftarHewan">
+                  <option value="Burung Elang"></option>
+                  <option value="Burung Gereja"></option>
+                  <option value="Burung Madu"></option>
+                  <option value="Burung Tekukur"></option>
+                  <option value="Burung Kutilang"></option>
+                  <option value="Burung Bondol Aji"></option>
+                  <option value="Burung Walet"></option>
+                  <option value="Monyet"></option>
+                  <option value="Babi"></option>
+                  <option value="Anjing"></option>
+                  <option value="Biawak"></option>
+                  <option value="Ular"></option>
+                  <option value="Buaya"></option>
+                  <option value="Kambing"></option>
+                </datalist>
+                <!-- Grid Pilihan Hewan -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3" id="hewanGrid">
+                  <button type="button" class="hewan-btn">Burung Elang</button>
+                  <button type="button" class="hewan-btn">Burung Gereja</button>
+                  <button type="button" class="hewan-btn">Burung Madu</button>
+                  <button type="button" class="hewan-btn">Burung Tekukur</button>
+                  <button type="button" class="hewan-btn">Burung Kutilang</button>
+                  <button type="button" class="hewan-btn">Burung Bondol Aji</button>
+                  <button type="button" class="hewan-btn">Burung Walet</button>
+                  <button type="button" class="hewan-btn">Monyet</button>
+                  <button type="button" class="hewan-btn">Babi</button>
+                  <button type="button" class="hewan-btn">Anjing</button>
+                  <button type="button" class="hewan-btn">Biawak</button>
+                  <button type="button" class="hewan-btn">Ular</button>
+                  <button type="button" class="hewan-btn">Buaya</button>
+                  <button type="button" class="hewan-btn">Kambing</button>
+                </div>
+              </div>
+
+              <div>
+                <label for="zona" class="block text-sm font-medium text-mid-slate mb-1">Pilih Zona</label>
+                <select name="zona" id="zona" required class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-indigo focus:border-primary-indigo transition-all">
+                  <option value="">-- Pilih Zona --</option>
+                  <option value="zona 1">zona 1</option>
+                  <option value="zona 2">zona 2</option>
+                  <option value="zona 3">zona 3</option>
+                  <option value="zona 4">zona 4</option>
+                  <option value="zona 5">zona 5</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="jumlah" class="block text-sm font-medium text-mid-slate mb-1">Jumlah</label>
+                <input
+                  type="number"
+                  name="jumlah"
+                  id="jumlah"
+                  min="1"
+                  required
+                  placeholder="Contoh: 5"
+                  class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-indigo focus:border-primary-indigo transition-all"
+                />
+              </div>
+
+              <button
+                type="submit"
+                class="w-full flex justify-center items-center gap-2 text-white bg-primary-indigo hover:bg-secondary-indigo focus:ring-4 focus:ring-primary-indigo focus:ring-opacity-50 font-semibold rounded-lg text-base px-5 py-3 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Tambahkan ke Daftar
+              </button>
+            </form>
+            <div id="statusMessage" class="mt-4 text-center font-medium text-sm min-h-[20px]"></div>
+          </div>
+
+          <!-- Kartu untuk Tabel Validasi Lokal (Staging Area) -->
+          <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-xl font-bold mb-6 flex items-center text-dark-slate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-success-green">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="9" y2="9"></line>
+              </svg>
+              Daftar Laporan Sementara
+            </h2>
+            <div id="stagingTableContainer" class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm mb-4">
+              <!-- Tabel validasi lokal akan dirender di sini oleh JavaScript -->
+              <p class="p-8 text-center text-slate-500">Daftar laporan sementara kosong.</p>
+            </div>
+            <button
+              id="submitStagedDataButton"
+              class="w-full flex justify-center items-center gap-2 text-white bg-success-green hover:bg-emerald-700 focus:ring-4 focus:ring-success-green focus:ring-opacity-50 font-semibold rounded-lg text-base px-5 py-3 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              Simpan Semua ke Spreadsheet
+            </button>
+            <div id="stagingStatusMessage" class="mt-4 text-center font-medium text-sm min-h-[20px]"></div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Grafik dan Tabel Data (Global Spreadsheet) -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Kartu untuk Grafik -->
+          <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-xl font-bold mb-6 flex items-center text-dark-slate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-primary-indigo">
+                <path d="M2.5 2.5h3l4 12 4-12h3l-3.5 14h-3l-3.5-14zM18 16v5M22 18h-4"></path>
+              </svg>
+              Grafik Total Hewan per Zona
+            </h2>
+            <div id="chartContainer" class="relative h-64 sm:h-72 flex items-center justify-center">
+              <canvas id="animalChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Kartu untuk Tabel Data (Global) -->
+          <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-slate-200">
+            <h2 class="text-xl font-bold mb-6 flex items-center text-dark-slate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-primary-indigo">
+                <path d="M12 14c4.418 0 8-1.79 8-4s-3.582-4-8-4-8 1.79-8 4 3.582 4 8 4z"></path>
+                <path d="M12 14v6"></path>
+                <path d="M10 18h4"></path>
+                <path d="M3 2L12 9 21 2"></path>
+              </svg>
+              Detail Laporan (Global)
+            </h2>
+            <!-- Kontrol Tabel: Pencarian, Refresh, Download -->
+            <div class="flex flex-col sm:flex-row gap-4 items-center justify-between mb-6">
+              <div class="w-full sm:w-auto sm:flex-grow">
+                <input type="text" id="searchInput" placeholder="Cari data di tabel..." class="w-full p-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-indigo focus:border-primary-indigo transition-all" />
+              </div>
+              <div class="flex items-center gap-3 w-full sm:w-auto">
+                <button
+                  id="refreshButton"
+                  title="Segarkan Data"
+                  class="w-1/2 sm:w-auto flex justify-center items-center gap-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold rounded-lg px-4 py-3 transition-all duration-200 shadow-sm hover:shadow-md"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3" />
+                  </svg>
+                </button>
+                <button
+                  id="downloadExcel"
+                  title="Download Excel"
+                  class="w-1/2 sm:w-auto flex justify-center items-center gap-2 bg-success-green hover:bg-emerald-700 text-white font-semibold rounded-lg px-4 py-3 transition-all duration-200 shadow-md hover:shadow-lg"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Wrapper Tabel untuk scrolling di layar kecil -->
+            <div class="overflow-x-auto border border-slate-200 rounded-lg shadow-sm">
+              <div id="tabelData">
+                <!-- Tabel global akan dirender oleh JavaScript di sini -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>

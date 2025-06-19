@@ -1,0 +1,135 @@
+/* CSS Kustom yang Diperbarui */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Gaya tombol hewan yang lebih halus dan interaktif */
+.hewan-btn {
+  background-color: #fff;
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  border-radius: 0.5rem; /* rounded-lg */
+  padding: 0.75rem; /* p-3 */
+  font-size: 0.875rem; /* text-sm */
+  color: #334155; /* text-slate-700 */
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  cursor: pointer;
+  outline: none;
+}
+.hewan-btn:hover {
+  background-color: #eef2ff; /* bg-light-indigo */
+  border-color: #6366f1; /* border-secondary-indigo */
+  color: #4f46e5; /* text-primary-indigo */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* hover:shadow-md */
+}
+.hewan-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #6366f1, 0 1px 2px 0 rgb(0 0 0 / 0.05); /* focus:ring-2 focus:ring-secondary-indigo */
+}
+
+/* Gaya tabel global */
+#tabelData table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem; /* text-sm */
+  text-align: left;
+  color: #64748b; /* text-mid-slate */
+}
+
+#tabelData th,
+#tabelData td {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0; /* border-slate-200 */
+  vertical-align: middle;
+}
+
+#tabelData th {
+  background-color: #f1f5f9; /* bg-light-slate */
+  color: #1e293b; /* text-dark-slate */
+  font-weight: 600; /* font-semibold */
+  text-transform: uppercase; /* uppercase */
+}
+
+#tabelData tbody tr:nth-child(odd) {
+  background-color: #fff; /* bg-white */
+}
+#tabelData tbody tr:nth-child(even) {
+  background-color: #f8fafc; /* bg-slate-50 */
+}
+#tabelData tbody tr:hover {
+  background-color: #eef2ff; /* bg-light-indigo */
+}
+
+/* Gaya tabel validasi lokal (staging table) */
+#stagingTableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem; /* text-sm */
+  text-align: left;
+  color: #64748b; /* text-mid-slate */
+}
+
+#stagingTableContainer th,
+#stagingTableContainer td {
+  padding-left: 1rem; /* sedikit lebih kecil dari tabel global */
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+#stagingTableContainer th {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+#stagingTableContainer tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+#stagingTableContainer tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+#stagingTableContainer tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+/* Gaya tombol hapus di tabel validasi */
+.delete-btn {
+  background-color: #ef4444; /* error-red */
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-btn:hover {
+  background-color: #dc2626; /* red-700 */
+}
+.delete-btn svg {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Responsive adjustments for table cells */
+@media (max-width: 640px) {
+  #tabelData th,
+  #tabelData td,
+  #stagingTableContainer th,
+  #stagingTableContainer td {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
